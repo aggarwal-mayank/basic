@@ -1,18 +1,9 @@
 pipeline {
-    agent any
-
-    triggers {
-        pollSCM '* * * * *'
-    }
+    agent { docker { image 'maven:3.3.3' } }
     stages {
-        stage('Build') {
+        stage('build') {
             steps {
-                sh './gradlew assemble'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh './gradlew test'
+                sh 'mvn --version'
             }
         }
     }

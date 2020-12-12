@@ -1,5 +1,5 @@
 pipeline {
-     agent any
+     agent kubernetes
      triggers {
         pollSCM '2 * * * *'
      }
@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sleep(time:5,unit:"MINUTES")
+                sleep(time:1,unit:"MINUTES")
             }
         }
     }

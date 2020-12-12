@@ -32,6 +32,7 @@ spec:
     stages {
         stage('Main') {
             steps {
+                sh 'pwd'
                 sh 'ls -alh'
             }
         }

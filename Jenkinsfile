@@ -1,17 +1,32 @@
 pipeline {
-    agent any
-    triggers {
-  pollSCM '2 * * * *'
-}
-        stages {
+     agent any
+     triggers {
+        pollSCM '2 * * * *'
+     }
+         environment {
+             // Using returnStdout
+             CC = """${sh(
+                     returnStdout: true,
+                     script: 'echo "clang"'
+                 )}"""
+             // Using returnStatus
+             EXIT_STATUS = """${sh(
+                     returnStatus: true,
+                     script: 'exit 1'
+                 )}"""
+         }
+     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
             }
         }
         stage('Test') {
+            environment {
+                DEBUG_FLAGS = '-g'
+            }
             steps {
-                echo 'Testing..'
+                sh 'printenv'
             }
         }
         stage('Deploy') {

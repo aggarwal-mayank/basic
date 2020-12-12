@@ -1,9 +1,22 @@
 pipeline {
-    agent { docker 'openjdk:11' } 
-    stages {
+    agent any
+    triggers {
+  pollSCM '2 * * * *'
+}
+        stages {
         stage('Build') {
             steps {
-                sh './gradlew build'
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
             }
         }
     }

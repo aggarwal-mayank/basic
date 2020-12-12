@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sleep 5m
+                sleep(time:5,unit:"MINUTES")
             }
         }
     }

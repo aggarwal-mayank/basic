@@ -11,7 +11,7 @@ pipeline {
                 container('gradle') {
                     sh 'pwd'
                     sh 'ls -alh'
-                    sh 'gradle build --nodaemon'
+                    sh 'gradle build --no-daemon'
                     sh 'ls -alh'
                 }
             }

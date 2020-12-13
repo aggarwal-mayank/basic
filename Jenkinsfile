@@ -6,10 +6,12 @@ pipeline {
         }
     }
     stages {
-        stage('Main') {
+        stage('Build') {
             steps {
-                container('shell') {
+                container('gradle') {
                     sh 'pwd'
+                    sh 'ls -alh'
+                    sh 'gradle build --nodaemon'
                     sh 'ls -alh'
                 }
             }

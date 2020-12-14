@@ -6,12 +6,21 @@ pipeline {
         }
     }
     stages {
+        stage('Test') {
+            steps {
+                container('gradle') {
+                    sh 'pwd'
+                    sh 'gradle test'
+                    sh 'ls -alh'
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                 container('gradle') {
                     sh 'pwd'
-                    sh 'ls -alh'
-                    sh 'gradle build --no-daemon'
+                    sh 'gradle fatJar'
                     sh 'ls -alh'
                 }
             }

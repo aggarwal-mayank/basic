@@ -20,7 +20,7 @@ pipeline {
             steps {
                 container('gradle') {
                     sh 'pwd'
-                    sh 'gradle fatJar'
+                    sh 'gradle bootJar'
                     sh 'ls -alh'
                 }
             }

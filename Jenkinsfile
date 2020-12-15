@@ -28,7 +28,9 @@ pipeline {
 
         stage('Global') {
             steps {
-                foo.info('World!!')
+                script {
+                    foo.info('World!!')
+                }
                 container('gradle') {
                     sh 'pwd'
                     sh 'ls -alh'

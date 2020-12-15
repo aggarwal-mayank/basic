@@ -2,16 +2,32 @@ plugins {
     id 'org.springframework.boot' version '2.4.0'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
+    id 'jacoco'
 }
 
 group = 'org.appcode'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '11'
+
+sourceSets {
+    intTest {
+        java {
+            srcDir 'src/test-integration/java'
+        }
+        resources {
+            srcDir 'src/test-integration/resources'
+        }
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
 
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    intTestImplementation.extendsFrom testImplementation
+    intTestRuntimeOnly.extendsFrom runtimeOnly
 }
 
 repositories {
@@ -32,4 +48,21 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+    }
+    dependsOn test
+}
+
+task testIntegration(type: Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+    testClassesDirs = sourceSets.intTest.output.classesDirs
+    classpath = sourceSets.intTest.runtimeClasspath
+}
+

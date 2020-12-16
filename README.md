@@ -4,3 +4,4 @@ Jenkins Pipeline Support
 Added Junit Support
 Added Sonar Coverage
 Cleanup
+Added Kafka

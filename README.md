@@ -8,3 +8,4 @@ Added Kafka
 Added Postgres
 Cleanup
 Added Kotlin
+Added Gradle

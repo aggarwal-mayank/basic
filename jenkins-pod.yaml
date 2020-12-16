@@ -3,15 +3,15 @@ kind: Pod
 spec:
   containers:
     - name: gradle
-      image: gradle:6.7.1-jdk11
+      image: gradle:6.7-jdk11
       resources:
         requests:
           cpu: "100m"
-          memory: "256Mi"
+          memory: "512Mi"
         limits:
           cpu: "500m"
           memory: "1Gi"  
       command:
         - sleep
       args:
-        - 99d
+        - 9d

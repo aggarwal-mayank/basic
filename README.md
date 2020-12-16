@@ -5,3 +5,4 @@ Added Junit Support
 Added Sonar Coverage
 Cleanup
 Added Kafka
+Added Postgres

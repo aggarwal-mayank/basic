@@ -3,7 +3,7 @@ kind: Pod
 spec:
   containers:
     - name: gradle
-      image: gradle:6.7.1-jdk11
+      image: gradle:6.7-jdk11
       resources:
         requests:
           cpu: "100m"
